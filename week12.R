@@ -1,0 +1,121 @@
+exercise-1:
+  df=data.frame('studentname'=c("sai",'sneha','aravind','vani'),
+                + 'age'=c(20,19,18,20),
+                + 'weight'=c(60,46,70,45),
+                + 'height'=c(170,155,162,155),
+                + 'sex'=c('m','f','m','f'))
+  > df
+  studentname age weight height sex
+  1         sai  20     60    170   m
+  2       sneha  19     46    155   f
+  3     aravind  18     70    162   m
+  4        vani  20     45    155   f
+  df$sex=ifelse(df$sex=='m','f','m')
+  > df
+  studentname age weight height sex
+  1         sai  20     60    170   f
+  2       sneha  19     46    155   m
+  3     aravind  18     70    162   f
+  4        vani  20     45    155   m
+  exercise:2
+  df=data.frame('studentname'=c("sai",'sneha','aravind','vani'),
+                + 'age'=c(20,19,18,20),
+                + 'weight'=c(60,46,70,45),
+                + 'height'=c(170,155,162,155),
+                + 'sex'=c('m','f','m','f'),StringsAsFactors=FALSE)
+  df1=data.frame('name'=c('sai','sneha','aravind','vani'),
+                 + 'working'=c('yes','no','yes','yes'))
+  > d=cbind(df,df1)
+  > d
+  studentname age weight height sex StringsAsFactors    name working
+  1         sai  20     60    170   m            FALSE     sai     yes
+  2       sneha  19     46    155   f            FALSE   sneha      no
+  3     aravind  18     70    162   m            FALSE aravind     yes
+  4        vani  20     45    155   f            FALSE    vani     yes
+  > sapply(d,class)
+  studentname              age           weight           height              sex 
+  "character"        "numeric"        "numeric"        "numeric"      "character" 
+  StringsAsFactors             name          working 
+  "logical"      "character"      "character" 
+  dim(d)
+  [1] 4 8
+  exercise:3
+  class(state.center)
+  [1] "list"
+  exercise 4:
+    v1=c(1,2,3,4)
+  > v2=c('q','w','r','t')
+  > v3=c(7,8,9,0)
+  > df=data.frame(c1=v1,c2=v2,c3=v3)
+  > df
+  > df=df[order(df$c1),]
+  > df
+  c1 c2 c3
+  1  1  q  7
+  2  2  w  8
+  3  3  r  9
+  4  4  t  0
+  exercise:5
+  > mat <- matrix(1:12, nrow = 3, ncol = 4)
+  df=as.data.frame(mat)
+  > rownames(df)=paste0('id_',1:nrow(df)
+                        + )
+  > colnames(df)=paste0('variable_',1:ncol(df))
+  > df
+  variable_1 variable_2 variable_3 variable_4
+  id_1          1          4          7         10
+  id_2          2          5          8         11
+  id_3          3          6          9         12
+  > exercise: 6
+  d=data.frame(VADeaths)
+  > d$Total=rowSums(d)
+  > d=d[,c(5,1,2,3,4)]    
+  > d
+  Total Rural.Male Rural.Female Urban.Male Urban.Female
+  50-54  44.2       11.7          8.7       15.4          8.4
+  55-59  67.7       18.1         11.7       24.3         13.6
+  60-64 103.5       26.9         20.3       37.0         19.3
+  65-69 161.6       41.0         30.9       54.6         35.1
+  70-74 241.4       66.0         54.3       71.1         50.0
+  > class(VADeaths)
+  [1] "matrix" "array" 
+  exercise:7
+  class(state.x77)
+  [1] "matrix" "array" 
+  > df2=data.frame(state.x77)
+  > nrow(df2[df2$Income<4300,])
+  [1] 20
+  row.names(df2[which.max(df2$Income),])
+  [1] "Alaska"
+  > exercise:8
+  df3 <- data.frame(swiss[c(1,2,3,10,11,12,13),c("Examination", "Education", "Infant.Mortality")])
+  > df3$Infant.Mortality[4] <- NA
+  > Total <- colSums(df3, na.rm = TRUE)
+  > df4 <- rbind(df3,Total)
+  > rownames(df4) = c(rownames(df3),"Total")
+  > df4
+  Examination Education Infant.Mortality
+  Courtelary            15        12             22.2
+  Delemont               6         9             22.2
+  Franches-Mnt           5         5             20.2
+  Sarine                16        13               NA
+  Veveyse               14         6             24.5
+  Aigle                 21        12             16.5
+  Aubonne               14         7             19.1
+  Total                 91        64            124.7
+  > Prop <- df4$Examination / df4["Total","Examination"]
+  > 
+    > Prop
+  [1] 0.16483516 0.06593407 0.05494505 0.17582418 0.15384615 0.23076923 0.15384615 1.00000000
+  > df4 <- cbind(df4,Prop)
+  > df4
+  Examination Education Infant.Mortality       Prop
+  Courtelary            15        12             22.2 0.16483516
+  Delemont               6         9             22.2 0.06593407
+  Franches-Mnt           5         5             20.2 0.05494505
+  Sarine                16        13               NA 0.17582418
+  Veveyse               14         6             24.5 0.15384615
+  Aigle                 21        12             16.5 0.23076923
+  Aubonne               14         7             19.1 0.15384615
+  Total                 91        64            124.7 1.00000000
+  > 
